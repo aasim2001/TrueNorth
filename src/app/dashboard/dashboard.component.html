@@ -1,0 +1,54 @@
+<div class="contianter">
+    <img src="./assets/images/logo.png" alt="" class="logo">
+    <div class="wrapper">
+        <form [formGroup]="searchGroup">
+            <input type="text" id="search" placeholder="Search Github Users" (keyup)="filter($event)"
+                (keyup.enter)="search($event.target.value)" [value]="serachKey" formControlName="search" />
+            <div id="searchOptions" *ngIf="searchOptions.length > 0">
+                <ul>
+                    <li *ngFor="let item of searchOptions" [class.selected]="item.id == searchOptions[selectedId].id"
+                        (click)="$event.stopPropagation();search(item.login)">
+                        <div class="row">
+                            <div class="avatar">
+                                <img src="{{item.avatar_url}}" />
+                            </div>
+                            <div class="title">
+                                {{item.login}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+
+    </div>
+    <div class="recentSearch" *ngIf="recentSearh.length">
+        <div class="title">Recent Search: </div>
+        <div>
+            <ul>
+                <li *ngFor="let item of recentSearh | slice:0:3;">
+                    <div class="chip" title="{{item}}">
+                        <div class="recentSearchKey" (click)="search(item)">{{item}}</div>
+                        <span class="closebtn" (click)="removeSearch(item)">&times;</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="result">
+        <ul>
+            <li *ngFor="let item of searchResult" (click)="selectUser(item.login)">
+                <div class="row">
+                    <div class="avatar">
+                        <img src="{{item.avatar_url}}" />
+                    </div>
+                    <div class="title">
+                        {{item.login}}
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="profilecont" *ngIf="userDetail">
+    <div class="banner">
+      <div class="back" (click)="location.back()">
+        <img src="./assets/images/back.svg" alt="back" />
+      </div>
+      <div class="ava">
+        <img src="{{userDetail.avatar_url}}" alt="ava" />
+      </div>
+      <h4 *ngIf="userDetail.name; else name">{{userDetail.name}}</h4>
+      <ng-template #name>
+        <h4>{{userDetail.login}}</h4>
+      </ng-template>
+      <div class="follow">Following: {{userDetail.following}} &nbsp;&nbsp; Followers: {{userDetail.followers}}</div>
+    </div>
+    <div class="content">
+      <div class="main">
+        <h5>Repository ({{userDetail.public_repos}})</h5>
+        <ul class="posts">
+          <li class="coding" *ngFor="let item of repoDetails | slice:0:100">
+            <a href="#" (click)="$event.preventDefault()">
+              <div class="txt">
+                <h5>{{item.name}}</h5>
+                <div class="sub">
+                  <span *ngIf="item.description">{{item.description}} -</span>
+                  <span>&nbsp;</span>
+                  <span>{{item.created_at | date:'dd MMM YYYY'}}</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="side">
+        <h5>Bio</h5>
+        <p *ngIf="userDetail.bio; else noData">{{userDetail.bio}}</p>
+        <ng-template #noData><p>No information given.</p></ng-template>
+        
+        <h5>Account Created At</h5>
+        <p>{{userDetail.created_at | date: 'dd MMM YYYY'}}</p>
+      </div>
+    </div>
+  </div>

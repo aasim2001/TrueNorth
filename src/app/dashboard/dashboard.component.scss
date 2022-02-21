@@ -1,0 +1,153 @@
+@mixin container {
+    min-width: 300px;
+    max-width: 500px;
+    width: 100%;
+    margin: 10px auto;
+}
+.contianter {
+    @include container;
+    .logo {
+        width: 130px;
+        height: auto;
+    }
+}
+
+.wrapper {
+    position: relative;
+    background-color: #fff;
+
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 0 18px;
+    box-sizing: border-box;
+    input {
+        border: none;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 15px 10px;
+        outline: none;
+    }
+    
+    ul {
+        padding: 0 0 10px 0;
+        margin: 0;
+        li {
+            list-style: none;
+            padding: 5px;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+            &.selected{
+                background-color: rgb(231, 232, 235);
+                border-left: 3px solid rgb(0, 153, 255);
+            }
+            &:hover {
+                background-color: rgb(231, 232, 235);
+                border-left: 3px solid rgb(0, 153, 255);
+            }
+            &:first-child{
+                height: 0;
+                padding: 0;
+                visibility: hidden;
+            }
+            .row {
+                display: flex;
+                
+                .title {
+                    padding: 10px;
+                }
+                .avatar {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+
+        }
+    }
+}
+.result {
+    ul {
+        padding: 0 0 10px 0;
+        margin: 0;
+        li {
+            list-style: none;
+            padding: 10px 5px;
+            border-left: 3px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover {
+                background-color: rgb(231, 232, 235);
+            }
+            .row {
+                display: flex;
+                
+                .title {
+                    padding: 10px;
+                }
+                .avatar {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+    
+        }
+    }
+}
+.recentSearch {
+    @include container;
+    display: flex;
+    font-size: 14px;
+    color: rgb(102, 102, 102);
+    .title {
+        padding: 10px 4px;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        li{
+            float: left;
+            padding: 4px;
+            list-style: none;
+            .chip {
+                display: flex;
+                padding: 5px 10px;
+                height: 20px;
+                font-size: 14px;
+                line-height: 20px;
+                border-radius: 14px;
+                background-color: #f1f1f1;
+                .recentSearchKey {
+                    max-width: 100px;
+                    overflow: hidden;
+                    text-decoration: none;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    cursor: pointer;
+                }
+              }
+              
+              .closebtn {
+                padding-left: 10px;
+                color: #888;
+                font-weight: bold;
+                float: right;
+                font-size: 20px;
+                cursor: pointer;
+              }
+              
+              .closebtn:hover {
+                color: #000;
+              }
+        }
+    }
+}
+
